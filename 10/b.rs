@@ -89,7 +89,7 @@ fn main() {
     }
 
     for v in by_angle.values_mut() {
-        v.sort_by_key(|(i, j)| (i - x).abs() + (j - y).abs());
+        v.sort_by_key(|(i, j)| -(i - x).abs() - (j - y).abs());
     }
 
     let mut it = by_angle.values_mut();
