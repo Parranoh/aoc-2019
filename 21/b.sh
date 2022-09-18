@@ -1,7 +1,9 @@
 #!/bin/sh
 cd "$(dirname "$0")"
 [ -x intcode-ascii ] || rustc -O ../intcode-ascii.rs
-cat input - <<\EOF | ./intcode-ascii | tail -n1
+{
+    cat
+    cat <<\EOF
 NOT A J
 NOT B T
 OR T J
@@ -14,3 +16,4 @@ OR H T
 AND T J
 RUN
 EOF
+} | ./intcode-ascii | tail -n1
