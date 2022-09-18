@@ -36,9 +36,16 @@ impl Computer {
             },
             3 => {
                 let mut buf = [0];
-                stdin().read_exact(&mut buf).unwrap();
-                *self.param(1) = buf[0] as i64;
-                (PC::Inc(2), false)
+                match stdin().read_exact(&mut buf) {
+                    Ok(()) => {
+                        *self.param(1) = buf[0] as i64;
+                        (PC::Inc(2), false)
+                    },
+                    _ => {
+                        println!("Bye!");
+                        (PC::Inc(0), true)
+                    }
+                }
             },
             4 => {
                 let output = *self.param(1);
